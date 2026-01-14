@@ -1,0 +1,27 @@
+Profile Features:
+	Email and Compost - 4
+	Skills - 2
+	Certificates & Experience - 3
+	About Me - 1
+
+Header:
+	profile
+	Inquiries
+	Skills
+	About Me
+	light / dark 
+
+Footer:
+	Social Media Links (Facebook, Instagram, GitHub, JobStreet, LinkedIn, StackOverflow)
+
+UI:	
+	Static UI
+	Welcome page
+	Main Landing page
+	Responsive UI
+
+Back end:
+	temporary session
+	email api for sending compost/message *google only
+	
+	

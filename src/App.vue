@@ -1,11 +1,52 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <AppHeader v-if="$route.name !== 'intro'" />
+
+  <main>
+    <router-view v-slot="{ Component }">
+      <transition name="page-fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </main>
 </template>
 
-<style scoped></style>
+<script setup>
+import AppHeader from './components/Header.vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+</script>
+
+<style>
+/* Global Smooth Theme Transition */
+*, *::before, *::after {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease !important;
+}
+
+/* Fix for the theme toggle slider smoothness */
+.switch-hand, .theme-switch {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+              background-color: 0.4s ease !important;
+}
+
+/* Page Transition Animation */
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+</style>
