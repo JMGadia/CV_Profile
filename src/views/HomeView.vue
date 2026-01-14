@@ -11,7 +11,7 @@
                 <div class="corner bl"></div>
                 <div class="corner br"></div>
               </div>
-              <img src="../assets/welcomeimage.png" alt="JM Gadia" class="profile-img" />
+              <img src="../assets/formalimage.png" alt="JM Gadia" class="profile-img" />
               <div class="status-tag"><span class="status-dot"></span> AVAILABLE FOR WORK</div>
             </div>
           </div>
@@ -147,6 +147,7 @@
 /* Typography */
 .gradient-text {
   background: linear-gradient(45deg, var(--bs-primary), #00d4ff);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
