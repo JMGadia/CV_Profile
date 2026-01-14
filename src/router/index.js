@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IntroPage from '../views/Intropage.vue'
-import HomePage from '../components/HomePage.vue'
+import HomeView from '../views/HomeView.vue' // Import the content, not the nav
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,10 +13,9 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: HomePage,
+      component: HomeView, // Fixed here
     },
   ],
-  // This ensures that when navigating, we always start at the top
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       return { el: to.hash, behavior: 'smooth' }

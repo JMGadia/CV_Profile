@@ -12,19 +12,22 @@
 
 <script setup>
 import AppHeader from './components/HomePage.vue'
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
 </script>
 
 <style>
-/* Global Smooth Theme Transition */
-*,
-*::before,
-*::after {
+/* Apply transitions only to theme-related properties, avoid !important */
+body {
   transition:
     background-color 0.6s ease,
-    color 0.6s ease,
+    color 0.6s ease;
+}
+
+/* Specifically target nav and cards for theme transitions */
+.navbar,
+.card,
+.custom-nav {
+  transition:
+    background-color 0.6s ease,
     border-color 0.6s ease !important;
 }
 
