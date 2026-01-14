@@ -11,7 +11,19 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue' // Fix: Added onMounted import
+import { useRouter } from 'vue-router' // Fix: Added useRouter import
 import AppHeader from './components/HomePage.vue'
+
+const router = useRouter()
+
+onMounted(() => {
+  // Logic to clear session and redirect to intro on page refresh
+  if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+    localStorage.removeItem('portfolio_session')
+    router.push('/')
+  }
+})
 </script>
 
 <style>

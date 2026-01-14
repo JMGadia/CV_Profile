@@ -145,7 +145,13 @@ const handleDesktopClick = () => {
 const takePhoto = () => {
   if (isFlashing.value) return
   isFlashing.value = true
-  setTimeout(() => router.push('/home'), 800)
+
+  // Save the current time in milliseconds
+  localStorage.setItem('portfolio_session', Date.now().toString())
+
+  setTimeout(() => {
+    router.push('/home')
+  }, 800)
 }
 
 onBeforeUnmount(() => clearTimeout(idleTimer))

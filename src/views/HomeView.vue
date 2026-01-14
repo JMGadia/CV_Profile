@@ -12,22 +12,20 @@
                 <div class="corner br"></div>
               </div>
               <img src="../assets/formalimage.png" alt="JM Gadia" class="profile-img" />
-              <div class="status-tag"><span class="status-dot"></span> AVAILABLE FOR WORK</div>
             </div>
           </div>
 
           <div class="col-lg-7 ps-lg-5">
-            <h6 class="text-primary fw-bold mb-3">01. ABOUT ME</h6>
             <h1 class="display-4 fw-bold mb-4">
               Crafting digital experiences with <span class="gradient-text">precision.</span>
             </h1>
 
             <div class="about-text fs-5 text-secondary">
               <p>
-                Hello! I'm **JM Gadia**, a passionate developer focused on building functional and
-                visually striking web applications. My journey started with a curiosity for how
-                things work behind the screen, which evolved into a career of solving complex
-                problems through code.
+                Hello! I'm JHUN MARK D. GADIA, a passionate 4th year IT developer focused on
+                building functional and visually striking web applications. My journey started with
+                a curiosity for how things work behind every application, which evolved into a
+                career of solving complex problems through code with straight to point objectives.
               </p>
               <p>
                 I specialize in bridging the gap between design and technology. Whether it's

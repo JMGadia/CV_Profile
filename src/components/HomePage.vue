@@ -1,8 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg sticky-top border-bottom custom-nav">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-3 text-primary" href="#">JMGadia</a>
-
       <button
         class="navbar-toggler"
         type="button"
