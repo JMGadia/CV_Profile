@@ -11,26 +11,37 @@
                 <div class="corner bl"></div>
                 <div class="corner br"></div>
               </div>
-              <img src="../assets/formalimage.png" alt="JM Gadia" class="profile-img" />
+
+              <div class="image-shift-container">
+                <img src="../assets/formalimage.png" alt="JM Gadia" class="profile-img base-img" />
+                <img
+                  src="../assets/welcomeimage.png"
+                  alt="JM Gadia Hover"
+                  class="profile-img hover-img"
+                />
+              </div>
             </div>
           </div>
 
           <div class="col-lg-7 ps-lg-5">
             <h1 class="display-4 fw-bold mb-4">
-              Crafting digital experiences with <span class="gradient-text">precision.</span>
+              A developer with <span class="gradient-text">precision</span> and
+              <span class="gradient-text">simplicity</span>
             </h1>
 
             <div class="about-text fs-5 text-secondary">
               <p>
-                Hello! I'm JHUN MARK D. GADIA, a passionate 4th year IT developer focused on
-                building functional and visually striking web applications. My journey started with
-                a curiosity for how things work behind every application, which evolved into a
-                career of solving complex problems through code with straight to point objectives.
+                Hello! I'm JHUN MARK D. GADIA, a passionate 4th year IT student and a software and
+                web developer focused on building functional and visually striking web applications.
+                My journey started with a curiosity for how things work behind every application,
+                which evolved into a career of solving complex problems through code with straight
+                to the point objectives.
               </p>
               <p>
-                I specialize in bridging the gap between design and technology. Whether it's
-                developing high-performance interfaces in **Vue.js** or architecting robust back-end
-                systems, I thrive on turning ideas into interactive reality.
+                I specialize in architecting the logic that powers seamless digital experiences.
+                While I value clean presentation, my true passion lies in building robust back-end
+                systems and efficient APIs. I thrive on taking complex data requirements and
+                distilling them into simple, high-performance server-side solutions.
               </p>
             </div>
 
@@ -47,11 +58,6 @@
                   <p class="small text-uppercase mb-0">Main Stack</p>
                 </div>
               </div>
-            </div>
-
-            <div class="mt-4">
-              <a href="#inquiries" class="btn btn-primary btn-lg px-4 me-3">Let's Talk</a>
-              <a href="#" class="btn btn-outline-secondary btn-lg px-4">Download CV</a>
             </div>
           </div>
         </div>
@@ -73,18 +79,51 @@
   background: rgba(var(--bs-primary-rgb), 0.05);
   border: 1px solid rgba(var(--bs-primary-rgb), 0.1);
   border-radius: 12px;
+  /* Ensure hover effect triggers when entering the frame */
+  cursor: crosshair;
+}
+
+/* Container for the two images */
+.image-shift-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1; /* Keeps the frame consistent */
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .profile-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 4px;
-  filter: grayscale(20%);
-  transition: filter 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.profile-frame:hover .profile-img {
+/* Initial state of the images */
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(1.1) translateY(10px); /* Slight 'shift' prep */
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.base-img {
+  filter: grayscale(20%);
+}
+
+/* Hover State - The "Shift" */
+.profile-frame:hover .base-img {
+  opacity: 0;
+  transform: scale(0.95);
   filter: grayscale(0%);
+}
+
+.profile-frame:hover .hover-img {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 /* Corner Accents */
@@ -93,7 +132,17 @@
   width: 20px;
   height: 20px;
   border: 2px solid var(--bs-primary);
+  z-index: 2;
+  transition: all 0.3s ease;
 }
+
+/* Subtle corner expansion on hover */
+.profile-frame:hover .corner {
+  width: 30px;
+  height: 30px;
+  border-color: #00d4ff;
+}
+
 .tl {
   top: 0;
   left: 0;
@@ -130,6 +179,7 @@
   font-size: 0.7rem;
   font-weight: bold;
   letter-spacing: 1px;
+  z-index: 3;
 }
 
 .status-dot {
@@ -142,7 +192,6 @@
   animation: pulse 1.5s infinite;
 }
 
-/* Typography */
 .gradient-text {
   background: linear-gradient(45deg, var(--bs-primary), #00d4ff);
   background-clip: text;

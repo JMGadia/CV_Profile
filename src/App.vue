@@ -8,12 +8,15 @@
       </transition>
     </router-view>
   </main>
+
+  <AppFooter v-if="$route.name !== 'intro'" />
 </template>
 
 <script setup>
 import { onMounted } from 'vue' // Fix: Added onMounted import
 import { useRouter } from 'vue-router' // Fix: Added useRouter import
 import AppHeader from './components/HomePage.vue'
+import AppFooter from './components/AppFooter.vue'
 
 const router = useRouter()
 
