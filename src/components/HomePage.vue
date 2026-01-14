@@ -113,7 +113,7 @@ onMounted(() => {
   left: 3px;
   /* This is the slide animation - Cubic-bezier makes it feel "snappy" but smooth */
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
 

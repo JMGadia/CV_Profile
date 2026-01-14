@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import AppHeader from './components/Header.vue'
+import AppHeader from './components/HomePage.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -19,14 +19,20 @@ const route = useRoute()
 
 <style>
 /* Global Smooth Theme Transition */
-*, *::before, *::after {
-  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease !important;
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease,
+    border-color 0.6s ease !important;
 }
 
 /* Fix for the theme toggle slider smoothness */
-.switch-hand, .theme-switch {
+.switch-hand,
+.theme-switch {
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
-              background-color: 0.4s ease !important;
+  background-color: 0.4s ease !important;
 }
 
 /* Page Transition Animation */
