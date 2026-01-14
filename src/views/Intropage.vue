@@ -13,7 +13,7 @@
     </div>
 
     <div class="camera-rig" :style="dynamicStyles.rig">
-      <div class="viewfinder">
+      <div class="viewfinder" :class="{ 'error-border': showError }">
         <div class="viewfinder-grid"></div>
         <div class="corner tl"></div>
         <div class="corner tr"></div>
@@ -25,8 +25,12 @@
           <div class="date-time-group">{{ currentDateTime }}</div>
         </div>
 
-        <div class="interaction-hint" :class="{ show: showHint }">
-          <template v-if="isMobile"> TAP RED BUTTON TO CAPTURE </template>
+        <div
+          class="interaction-hint"
+          :class="{ show: showHint || showError, 'text-danger': showError }"
+        >
+          <template v-if="showError"> !! TARGET NOT IN RANGE !! </template>
+          <template v-else-if="isMobile"> TAP RED BUTTON TO CAPTURE </template>
           <template v-else> [ CLICK LEFT MOUSE TO CAPTURE ] </template>
         </div>
 
@@ -62,10 +66,12 @@ const isFlashing = ref(false)
 const isMobile = ref(false)
 const isOverTarget = ref(false)
 const showHint = ref(false)
+const showError = ref(false)
 const currentDateTime = ref('')
 const pos = ref({ px: 0, py: 0, xPct: 50, yPct: 50, tilt: 0 })
 
 let idleTimer = null
+let errorTimer = null
 
 const updateDateTime = () => {
   const now = new Date()
@@ -83,7 +89,6 @@ const updateDateTime = () => {
 }
 
 onMounted(() => {
-  // Broad mobile detection + Screen size check
   const uaCheck = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
   const sizeCheck = window.innerWidth <= 1180
   isMobile.value = uaCheck || sizeCheck
@@ -93,12 +98,11 @@ onMounted(() => {
 
   updateDateTime()
   setInterval(updateDateTime, 1000)
-
   if (!isMobile.value) showHint.value = true
 })
 
 const startIdleTimer = () => {
-  if (!isMobile.value) return
+  if (!isMobile.value || showError.value) return
   clearTimeout(idleTimer)
   showHint.value = false
   idleTimer = setTimeout(() => {
@@ -114,6 +118,7 @@ const updateCoordinates = (x, y) => {
   pos.value.xPct = (x / window.innerWidth) * 100
   pos.value.yPct = (y / window.innerHeight) * 100
 
+  // Check if camera is over the center image
   const dist = Math.hypot(x - window.innerWidth / 2, y - window.innerHeight / 2)
   isOverTarget.value = dist < 150
   startIdleTimer()
@@ -134,7 +139,7 @@ const dynamicStyles = computed(() => {
     rig: {
       left: `${pos.value.px}px`,
       top: `${pos.value.py}px`,
-      transform: `translate(-50%, -50%) rotate(${pos.value.tilt}deg) scale(${isMobile.value ? 1 : 1})`,
+      transform: `translate(-50%, -50%) rotate(${pos.value.tilt}deg) scale(${isMobile.value ? 0.7 : 1})`,
     },
   }
 })
@@ -142,19 +147,36 @@ const dynamicStyles = computed(() => {
 const handleDesktopClick = () => {
   if (!isMobile.value) takePhoto()
 }
+
 const takePhoto = () => {
   if (isFlashing.value) return
+
+  // BLOCKER: If not over target, show error and stop
+  if (!isOverTarget.value) {
+    triggerError()
+    return
+  }
+
   isFlashing.value = true
-
-  // Save the current time in milliseconds
   localStorage.setItem('portfolio_session', Date.now().toString())
-
   setTimeout(() => {
     router.push('/home')
   }, 800)
 }
 
-onBeforeUnmount(() => clearTimeout(idleTimer))
+const triggerError = () => {
+  clearTimeout(errorTimer)
+  showError.value = true
+  showHint.value = false
+  errorTimer = setTimeout(() => {
+    showError.value = false
+  }, 2000)
+}
+
+onBeforeUnmount(() => {
+  clearTimeout(idleTimer)
+  clearTimeout(errorTimer)
+})
 </script>
 
 <style scoped>
@@ -168,7 +190,6 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
   position: relative;
   font-family: 'Share Tech Mono', monospace;
   touch-action: none;
-  /* Remove cursor for desktop only if not mobile */
   cursor: v-bind('isMobile ? "auto" : "none"');
 }
 
@@ -195,20 +216,20 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
 .target-label {
   color: #00ff00;
   font-size: 0.8rem;
-  margin-top: 10px;
   position: absolute;
   bottom: 20%;
+  text-shadow: 0 0 10px #00ff00;
 }
 
-/* --- CAMERA DESIGN --- */
 .camera-rig {
   position: absolute;
-  width: 90vw; /* Take up more width on mobile */
+  width: 90vw;
   max-width: 450px;
   height: 300px;
   pointer-events: none;
   z-index: 10;
   transition: transform 0.1s ease-out;
+  transform-origin: center center;
 }
 
 .viewfinder {
@@ -221,6 +242,12 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
   padding: 15px;
   background: rgba(0, 0, 0, 0.2);
   position: relative;
+  transition: border 0.3s ease;
+}
+
+.error-border {
+  border: 2px solid #ff0000 !important;
+  box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.3);
 }
 
 .viewfinder-grid {
@@ -265,21 +292,27 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
 
 .interaction-hint {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   color: #00ff00;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
   text-align: center;
-  width: 80%;
+  width: 90%;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 .interaction-hint.show {
   opacity: 1;
 }
+.text-danger {
+  color: #ff3b3b !important;
+  animation: blink 0.5s infinite;
+  text-shadow: 0 0 8px #ff0000;
+}
 
-/* --- THE SHUTTER (NOW INSIDE VIEW) --- */
 .mobile-shutter-internal {
   position: absolute;
   right: 15px;
@@ -287,7 +320,6 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
   transform: translateY(-50%);
   pointer-events: auto;
 }
-
 .shutter-btn {
   width: 60px;
   height: 60px;
@@ -296,11 +328,10 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
   border: 4px solid #fff;
   padding: 5px;
 }
-
 .shutter-inner {
   width: 100%;
   height: 100%;
-  background: #ff0000; /* Red for visibility */
+  background: #ff0000;
   border-radius: 50%;
 }
 
@@ -339,11 +370,10 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
   }
 }
 
-/* Media Queries for Tablet range (820x1180) */
 @media (min-width: 415px) and (max-width: 1180px) {
   .camera-rig {
-    width: 250px;
-    height: 175px;
+    width: 300px;
+    height: 200px;
   }
 }
 </style>
