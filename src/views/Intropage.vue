@@ -342,8 +342,8 @@ onBeforeUnmount(() => clearTimeout(idleTimer))
 /* Media Queries for Tablet range (820x1180) */
 @media (min-width: 415px) and (max-width: 1180px) {
   .camera-rig {
-    width: 500px;
-    height: 350px;
+    width: 250px;
+    height: 175px;
   }
 }
 </style>
