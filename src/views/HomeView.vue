@@ -14,6 +14,7 @@
 
 <script setup>
 import AboutSection from '../components/AboutMe.vue'
+import SkillsSection from '../components/SkillsSection.vue'
 </script>
 
 <style scoped>
