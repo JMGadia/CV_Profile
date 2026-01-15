@@ -15,7 +15,7 @@
               <div class="image-shift-container">
                 <img src="../assets/formalimage.png" alt="JM Gadia" class="profile-img base-img" />
                 <img
-                  src="../assets/welcomeimage.png"
+                  src="../assets/imageTwo.png"
                   alt="JM Gadia Hover"
                   class="profile-img hover-img"
                 />
