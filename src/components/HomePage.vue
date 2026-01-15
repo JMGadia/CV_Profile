@@ -84,7 +84,7 @@ onMounted(() => {
 .theme-switch {
   width: 52px;
   height: 28px;
-  background-color: #e9ecef;
+  background-color: #bbbcbe;
   border-radius: 50px;
   position: relative;
   border: 1px solid #dee2e6;

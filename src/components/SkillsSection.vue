@@ -48,16 +48,24 @@ const sectionRef = ref(null)
 
 const row1 = [
   { name: 'Bootstrap', logo: new URL('../assets/bootstrap.png', import.meta.url).href },
-  { name: 'PHP', logo: 'https://cdn.simpleicons.org/php/777BB4' },
-  { name: 'MySQL', logo: 'https://cdn.simpleicons.org/mysql/4479A1' },
-  { name: 'Laravel', logo: 'https://cdn.simpleicons.org/laravel/FF2D20' },
+  { name: 'C++', logo: new URL('../assets/c++.png', import.meta.url).href },
+  { name: 'SQL server', logo: new URL('../assets/msSQLserver.png', import.meta.url).href },
+  { name: 'C#', logo: new URL('../assets/csharp.png', import.meta.url).href },
+  { name: 'github', logo: new URL('../assets/github.png', import.meta.url).href },
+  { name: 'java', logo: new URL('../assets/java.png', import.meta.url).href },
 ]
 
 const row2 = [
-  { name: 'Express', logo: 'https://cdn.simpleicons.org/express/ffffff' },
-  { name: 'PostgreSQL', logo: 'https://cdn.simpleicons.org/postgresql/4169E1' },
-  { name: 'Docker', logo: 'https://cdn.simpleicons.org/docker/2496ED' },
+  { name: 'javascript', logo: new URL('../assets/javascript.png', import.meta.url).href },
+  { name: '.NET framework', logo: new URL('../assets/NETframework.png', import.meta.url).href },
+  { name: 'Render', logo: new URL('../assets/render.png', import.meta.url).href },
   { name: 'Git', logo: 'https://cdn.simpleicons.org/git/F05032' },
+  { name: 'vercel', logo: new URL('../assets/vercel.png', import.meta.url).href },
+  { name: 'Visual Basics', logo: new URL('../assets/visualbasics.png', import.meta.url).href },
+  { name: 'visual studio', logo: new URL('../assets/visualstudio.png', import.meta.url).href },
+  { name: 'vs code', logo: new URL('../assets/vscode.png', import.meta.url).href },
+  { name: 'vue', logo: new URL('../assets/vue.png', import.meta.url).href },
+  { name: 'xampp', logo: new URL('../assets/xampp.png', import.meta.url).href },
 ]
 
 onMounted(() => {
@@ -88,7 +96,6 @@ onMounted(() => {
 
 .section-title {
   font-family: 'Share Tech Mono', monospace;
-  /* Use a theme-aware color variable for the title text */
   color: var(--bs-emphasis-color, #fff);
   letter-spacing: 5px;
   font-weight: bold;
@@ -113,9 +120,7 @@ onMounted(() => {
 .skill-tile {
   width: 180px;
   height: 180px;
-  /* Updated background to be slightly visible in light mode */
   background: rgba(128, 128, 128, 0.05);
-  /* Added a very thin border for light mode definition */
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   display: flex;
@@ -125,11 +130,9 @@ onMounted(() => {
   gap: 20px;
   opacity: 0;
   transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-  /* Soft shadow to help white logos stand out on white backgrounds */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
-/* Dark mode specific override for tiles */
 [data-bs-theme='dark'] .skill-tile {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -153,33 +156,51 @@ onMounted(() => {
   width: 75px;
   height: 75px;
   object-fit: contain;
-  transition: transform 0.3s ease;
-  /* Added a drop shadow to ensure white logos are visible on white backgrounds */
+  transition: all 0.3s ease;
+  /* Soft drop shadow for visibility in normal light mode state */
   filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.1));
 }
 
 [data-bs-theme='dark'] .tech-logo {
-  filter: none; /* Remove shadow in dark mode for a cleaner look */
+  filter: none;
 }
 
 .tech-name {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.85rem;
-  /* Adjust color to be visible on both modes */
   color: var(--bs-secondary-color, #666);
   letter-spacing: 2px;
   text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
+/* --- THE HOVER REVOLUTION --- */
+
+/* Light Mode Hover: Dark background for maximum contrast */
 .skill-tile:hover {
+  background: #1a1a1a !important; /* Forces dark background in light mode */
+  border-color: #333;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode Hover: Use your signature gradient glow */
+[data-bs-theme='dark'] .skill-tile:hover {
+  background: rgba(var(--bs-primary-rgb), 0.15) !important;
   border-color: var(--bs-primary);
-  background: rgba(var(--bs-primary-rgb), 0.08);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 25px rgba(var(--bs-primary-rgb), 0.2);
+}
+
+/* Invert text and logo visibility on hover */
+.skill-tile:hover .tech-name {
+  color: #fff !important; /* Ensures text is visible on dark hover */
 }
 
 .skill-tile:hover .tech-logo {
   transform: scale(1.1);
+  filter: drop-shadow(
+    0px 0px 8px rgba(255, 255, 255, 0.3)
+  ); /* Makes logo glow against dark hover */
 }
 
 /* Status Indicator Decoration */
