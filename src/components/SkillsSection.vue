@@ -121,32 +121,27 @@ const events = [
   {
     title: 'Zuitt Bootcamp Certificate',
     image: new URL('../assets/zuitt-certificate.png', import.meta.url).href,
-    description:
-      'Successfully completed intensive web development training, focusing on full-stack architecture and modern coding standards.',
+    description: 'Successfully completed intensive web development training.',
   },
   {
     title: 'SYNTAX Seminar 2023',
     image: new URL('../assets/ITSC_2023.jpg', import.meta.url).href,
-    description:
-      'ITSC 2023 UFT - OFF Discovering IT Together Through Exploration, Collaboration, and Competition SYNTAX - CSTC Sariaya, February 2023',
+    description: 'ITSC 2023 UFT - OFF Discovering IT Together.',
   },
   {
     title: 'SYNTAX Seminar 2024',
     image: new URL('../assets/ITSC_2024.jpg', import.meta.url).href,
-    description:
-      'ITSC 2024 TRAVERSE - Navigating the Cloud : Revolutionizing the IT Landscape - A Seminar on Cloud Computing and Career Strategies in the Industry SYNTAX - CSTC Sariaya, February 2024',
+    description: 'ITSC 2024 TRAVERSE - Navigating the Cloud.',
   },
   {
     title: 'SYNTAX Seminar 2025',
     image: new URL('../assets/ITSC_2025.jpg', import.meta.url).href,
-    description:
-      'ITSC IGNITE • Inspire Growth, Nurture Innovation, and Transform Excellence through the Power of Information Technology SYNTAX - CSTC Sariaya, November 2025',
+    description: 'ITSC IGNITE • Inspire Growth, Nurture Innovation.',
   },
   {
     title: 'OJT Seminar 2025',
     image: new URL('../assets/OJT_2025.jpg', import.meta.url).href,
-    description:
-      '𝗜𝗚𝗡𝗜𝗧𝗜𝗡𝗚 𝗽𝗼𝘁𝗲𝗻𝘁𝗶𝗮𝗹 𝗮𝗻𝗱 𝗳𝘂𝗲𝗹𝗶𝗻𝗴 𝗲𝘅𝗰𝗲𝗹𝗹𝗲𝗻𝗰𝗲 Our 4th Year Students gained valuable insights and real-world preparation through the OJT Seminar.',
+    description: 'Igniting potential and fueling excellence.',
   },
 ]
 
@@ -154,7 +149,6 @@ const openModal = (event) => {
   selectedEvent.value = event
   document.body.style.overflow = 'hidden'
 }
-
 const closeModal = () => {
   selectedEvent.value = null
   document.body.style.overflow = 'auto'
@@ -178,14 +172,12 @@ onMounted(() => {
   overflow-x: hidden;
   padding: 120px 0;
 }
-
 .section-title {
   font-family: 'Share Tech Mono', monospace;
   color: var(--bs-emphasis-color, #fff);
   letter-spacing: 5px;
   font-weight: bold;
 }
-
 .section-intro {
   font-size: 1.1rem;
   line-height: 1.6;
@@ -194,13 +186,13 @@ onMounted(() => {
   color: var(--bs-secondary-color);
 }
 
+/* --- TECH TILES --- */
 .tile-row {
   display: flex;
   justify-content: center;
   gap: 25px;
   flex-wrap: wrap;
 }
-
 .skill-tile {
   width: 180px;
   height: 180px;
@@ -216,6 +208,11 @@ onMounted(() => {
   transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+[data-bs-theme='dark'] .skill-tile {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .from-left {
   transform: translateX(-100vw);
 }
@@ -227,19 +224,50 @@ onMounted(() => {
   transform: translateX(0);
 }
 
+/* Restore Tech Stack Hover Effects */
 .tech-logo {
   width: 75px;
   height: 75px;
   object-fit: contain;
+  transition: all 0.3s ease;
 }
 .tech-name {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.85rem;
+  color: var(--bs-secondary-color, #666);
   letter-spacing: 2px;
   text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
-/* --- REFINED COLLAGE BURST --- */
+.skill-tile:hover {
+  background: #1a1a1a !important;
+  border-color: #333;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-bs-theme='dark'] .skill-tile:hover {
+  background: rgba(var(--bs-primary-rgb), 0.15) !important;
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 25px rgba(var(--bs-primary-rgb), 0.2);
+}
+
+.skill-tile:hover .tech-name {
+  color: #fff !important;
+}
+.skill-tile:hover .tech-logo {
+  transform: scale(1.1);
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--bs-primary), transparent);
+  opacity: 0.3;
+}
+
+/* --- REFINED COLLAGE --- */
 .collage-container {
   position: relative;
   height: 450px;
@@ -248,16 +276,13 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
 }
-
 .collage-wrapper {
   position: absolute;
   cursor: pointer;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  /* All start centered and slightly rotated for a "messy pile" look */
-  transform: rotate(0deg) translate(0, 0);
+  transform: rotate(0deg);
   z-index: 1;
 }
-
 .collage-img {
   width: 300px;
   border-radius: 12px;
@@ -266,7 +291,6 @@ onMounted(() => {
   display: block;
 }
 
-/* Specific start rotations for the pile effect */
 .collage-wrapper:nth-child(1) {
   transform: rotate(-5deg);
   z-index: 5;
@@ -288,7 +312,6 @@ onMounted(() => {
   z-index: 1;
 }
 
-/* BURST EFFECT ON HOVER */
 .collage-container:hover .collage-wrapper:nth-child(1) {
   transform: translate(-160px, -80px) rotate(-10deg);
   z-index: 10;
@@ -326,7 +349,6 @@ onMounted(() => {
   pointer-events: none;
   border-radius: 4px;
 }
-
 .collage-wrapper:hover .click-hint {
   opacity: 1;
 }
@@ -348,7 +370,6 @@ onMounted(() => {
   z-index: 9999;
   padding: 20px;
 }
-
 .modal-card {
   background: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -358,7 +379,6 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
 }
-
 .modal-img-container {
   width: 100%;
   background: #000;
@@ -367,13 +387,11 @@ onMounted(() => {
   align-items: center;
   border-bottom: 1px solid #333;
 }
-
 .modal-img {
   max-width: 100%;
   max-height: 70vh;
   object-fit: contain;
 }
-
 .close-btn {
   position: absolute;
   top: 10px;
@@ -388,7 +406,6 @@ onMounted(() => {
   width: 50px;
   height: 50px;
 }
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -396,26 +413,5 @@ onMounted(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-@media (max-width: 991px) {
-  .collage-container {
-    height: 400px;
-  }
-  .collage-img {
-    width: 220px;
-  }
-  .collage-container:hover .collage-wrapper:nth-child(1) {
-    transform: translate(-80px, -60px) rotate(-10deg);
-  }
-  .collage-container:hover .collage-wrapper:nth-child(2) {
-    transform: translate(80px, -40px) rotate(8deg);
-  }
-  .collage-container:hover .collage-wrapper:nth-child(3) {
-    transform: translate(-70px, 70px) rotate(-5deg);
-  }
-  .collage-container:hover .collage-wrapper:nth-child(4) {
-    transform: translate(70px, 80px) rotate(12deg);
-  }
 }
 </style>
