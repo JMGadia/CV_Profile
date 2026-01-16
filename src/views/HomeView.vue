@@ -15,6 +15,7 @@
 <script setup>
 import AboutSection from '../components/AboutMe.vue'
 import SkillsSection from '../components/SkillsSection.vue'
+import InquirySection from '../components/Inquiry.vue'
 </script>
 
 <style scoped>
