@@ -127,11 +127,11 @@ onMounted(() => {
 
 const sendEmail = () => {
   isSending.value = true
-  statusMsg.value = 'CONNECTING_TO_MAIL_SERVER...'
 
-  const SERVICE_ID = 'service_22fatah'
-  const TEMPLATE_ID = 'template_0bi8pwn'
-  const PUBLIC_KEY = 'N7Rrz3moMIH93F3h2'
+  // Accessing hidden variables
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
   const templateParams = {
     from_name: formData.value.name,
