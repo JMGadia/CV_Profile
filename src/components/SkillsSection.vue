@@ -60,7 +60,7 @@
             <div
               v-for="(event, index) in events"
               :key="index"
-              :class="['collage-wrapper', `img-${index + 1}`]"
+              class="collage-wrapper"
               @click="openModal(event)"
             >
               <img :src="event.image" class="collage-img" :alt="event.title" />
@@ -125,16 +125,28 @@ const events = [
       'Successfully completed intensive web development training, focusing on full-stack architecture and modern coding standards.',
   },
   {
-    title: 'Syntax Organization',
+    title: 'SYNTAX Seminar 2023',
     image: new URL('../assets/ITSC_2023.jpg', import.meta.url).href,
     description:
       'ITSC 2023 UFT - OFF Discovering IT Together Through Exploration, Collaboration, and Competition SYNTAX - CSTC Sariaya, February 2023',
   },
   {
-    title: 'Technical Seminar 2024',
-    image: 'https://placehold.co/800x600/0a0a0a/ffffff?text=Seminar+Event',
+    title: 'SYNTAX Seminar 2024',
+    image: new URL('../assets/ITSC_2024.jpg', import.meta.url).href,
     description:
-      'Attending expert-led sessions on modern backend architecture and database optimization.',
+      'ITSC 2024 TRAVERSE - Navigating the Cloud : Revolutionizing the IT Landscape - A Seminar on Cloud Computing and Career Strategies in the Industry SYNTAX - CSTC Sariaya, February 2024',
+  },
+  {
+    title: 'SYNTAX Seminar 2025',
+    image: new URL('../assets/ITSC_2025.jpg', import.meta.url).href,
+    description:
+      'ITSC IGNITE • Inspire Growth, Nurture Innovation, and Transform Excellence through the Power of Information Technology SYNTAX - CSTC Sariaya, November 2025',
+  },
+  {
+    title: 'OJT Seminar 2025',
+    image: new URL('../assets/OJT_2025.jpg', import.meta.url).href,
+    description:
+      '𝗜𝗚𝗡𝗜𝗧𝗜𝗡𝗚 𝗽𝗼𝘁𝗲𝗻𝘁𝗶𝗮𝗹 𝗮𝗻𝗱 𝗳𝘂𝗲𝗹𝗶𝗻𝗴 𝗲𝘅𝗰𝗲𝗹𝗹𝗲𝗻𝗰𝗲 Our 4th Year Students gained valuable insights and real-world preparation through the OJT Seminar.',
   },
 ]
 
@@ -189,7 +201,6 @@ onMounted(() => {
   flex-wrap: wrap;
 }
 
-/* --- THE SLIDE LOGIC --- */
 .skill-tile {
   width: 180px;
   height: 180px;
@@ -203,13 +214,6 @@ onMounted(() => {
   gap: 20px;
   opacity: 0;
   transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-}
-
-[data-bs-theme='dark'] .skill-tile {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: none;
 }
 
 .from-left {
@@ -223,57 +227,19 @@ onMounted(() => {
   transform: translateX(0);
 }
 
-/* --- TILE INTERNALS --- */
 .tech-logo {
   width: 75px;
   height: 75px;
   object-fit: contain;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.1));
 }
-
-[data-bs-theme='dark'] .tech-logo {
-  filter: none;
-}
-
 .tech-name {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.85rem;
-  color: var(--bs-secondary-color, #666);
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.3s ease;
 }
 
-.skill-tile:hover {
-  background: #1a1a1a !important;
-  border-color: #333;
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-[data-bs-theme='dark'] .skill-tile:hover {
-  background: rgba(var(--bs-primary-rgb), 0.15) !important;
-  border-color: var(--bs-primary);
-  box-shadow: 0 0 25px rgba(var(--bs-primary-rgb), 0.2);
-}
-
-.skill-tile:hover .tech-name {
-  color: #fff !important;
-}
-.skill-tile:hover .tech-logo {
-  transform: scale(1.1);
-  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.3));
-}
-
-.section-divider {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--bs-primary), transparent);
-  opacity: 0.3;
-}
-
-/* --- COLLAGE BURST --- */
+/* --- REFINED COLLAGE BURST --- */
 .collage-container {
   position: relative;
   height: 450px;
@@ -287,14 +253,61 @@ onMounted(() => {
   position: absolute;
   cursor: pointer;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* All start centered and slightly rotated for a "messy pile" look */
+  transform: rotate(0deg) translate(0, 0);
+  z-index: 1;
 }
 
 .collage-img {
-  width: 320px;
+  width: 300px;
   border-radius: 12px;
   border: 4px solid var(--bs-body-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   display: block;
+}
+
+/* Specific start rotations for the pile effect */
+.collage-wrapper:nth-child(1) {
+  transform: rotate(-5deg);
+  z-index: 5;
+}
+.collage-wrapper:nth-child(2) {
+  transform: rotate(3deg);
+  z-index: 4;
+}
+.collage-wrapper:nth-child(3) {
+  transform: rotate(-2deg);
+  z-index: 3;
+}
+.collage-wrapper:nth-child(4) {
+  transform: rotate(6deg);
+  z-index: 2;
+}
+.collage-wrapper:nth-child(5) {
+  transform: rotate(-8deg);
+  z-index: 1;
+}
+
+/* BURST EFFECT ON HOVER */
+.collage-container:hover .collage-wrapper:nth-child(1) {
+  transform: translate(-160px, -80px) rotate(-10deg);
+  z-index: 10;
+}
+.collage-container:hover .collage-wrapper:nth-child(2) {
+  transform: translate(160px, -60px) rotate(8deg);
+  z-index: 10;
+}
+.collage-container:hover .collage-wrapper:nth-child(3) {
+  transform: translate(-140px, 90px) rotate(-5deg);
+  z-index: 10;
+}
+.collage-container:hover .collage-wrapper:nth-child(4) {
+  transform: translate(140px, 100px) rotate(12deg);
+  z-index: 10;
+}
+.collage-container:hover .collage-wrapper:nth-child(5) {
+  transform: translate(0, -140px) scale(1.05);
+  z-index: 11;
 }
 
 .click-hint {
@@ -317,34 +330,11 @@ onMounted(() => {
 .collage-wrapper:hover .click-hint {
   opacity: 1;
 }
-
-.img-1 {
-  transform: rotate(-8deg) translateX(-30px);
-  z-index: 3;
-}
-.img-2 {
-  transform: rotate(5deg) translateX(30px) translateY(20px);
-  z-index: 2;
-}
-.img-3 {
-  transform: rotate(-2deg) translateY(-40px);
-  z-index: 1;
+.collage-wrapper:hover {
+  z-index: 20 !important;
 }
 
-.collage-container:hover .img-1 {
-  transform: translate(-140px, -70px) rotate(-5deg);
-  z-index: 10;
-}
-.collage-container:hover .img-2 {
-  transform: translate(140px, 70px) rotate(5deg);
-  z-index: 10;
-}
-.collage-container:hover .img-3 {
-  transform: translate(0, -130px) scale(1.1);
-  z-index: 11;
-}
-
-/* --- MODAL UPDATES --- */
+/* --- MODAL --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -362,7 +352,7 @@ onMounted(() => {
 .modal-card {
   background: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 900px; /* Slightly wider to accommodate full certificates */
+  max-width: 900px;
   width: 100%;
   border-radius: 15px;
   position: relative;
@@ -380,8 +370,8 @@ onMounted(() => {
 
 .modal-img {
   max-width: 100%;
-  max-height: 75vh;
-  object-fit: contain; /* FIX: ensures the full certificate is visible */
+  max-height: 70vh;
+  object-fit: contain;
 }
 
 .close-btn {
@@ -394,7 +384,6 @@ onMounted(() => {
   font-size: 2.5rem;
   cursor: pointer;
   z-index: 10;
-  line-height: 1;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -411,17 +400,22 @@ onMounted(() => {
 
 @media (max-width: 991px) {
   .collage-container {
-    height: 350px;
+    height: 400px;
   }
   .collage-img {
-    width: 250px;
+    width: 220px;
   }
-}
-
-@media (max-width: 768px) {
-  .skill-tile {
-    width: 150px;
-    height: 150px;
+  .collage-container:hover .collage-wrapper:nth-child(1) {
+    transform: translate(-80px, -60px) rotate(-10deg);
+  }
+  .collage-container:hover .collage-wrapper:nth-child(2) {
+    transform: translate(80px, -40px) rotate(8deg);
+  }
+  .collage-container:hover .collage-wrapper:nth-child(3) {
+    transform: translate(-70px, 70px) rotate(-5deg);
+  }
+  .collage-container:hover .collage-wrapper:nth-child(4) {
+    transform: translate(70px, 80px) rotate(12deg);
   }
 }
 </style>
