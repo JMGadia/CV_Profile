@@ -13,7 +13,7 @@
             </p>
             <ul class="list-unstyled font-monospace small text-secondary">
               <li class="mb-2">
-                <i class="bi bi-chevron-right text-primary"></i> Focus: .NET / C# / SQL Server
+                <i class="bi bi-chevron-right text-primary"></i> Focus: Vue.js / VB.Net / Supabase
               </li>
               <li class="mb-2">
                 <i class="bi bi-chevron-right text-primary"></i> Philosophy: Keep it simple, keep it

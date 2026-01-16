@@ -46,8 +46,8 @@
             <h4 class="text-primary mb-3">Community & Growth</h4>
             <p class="text-secondary">
               Beyond the code, I am actively involved in various tech organizations and
-              competitions. These experiences have sharpened my leadership and ability to solve
-              complex problems.
+              competitions. These experiences have sharpened my coding skills and enhanced my
+              ability to solve complex problems within a team environment.
             </p>
             <p class="text-primary small font-monospace mt-3">
               <i class="bi bi-cursor-fill"></i> CLICK_IMAGE_FOR_DETAILS
@@ -115,6 +115,8 @@ const row2 = [
   { name: 'vs code', logo: new URL('../assets/vscode.png', import.meta.url).href },
   { name: 'vue', logo: new URL('../assets/vue.png', import.meta.url).href },
   { name: 'xampp', logo: new URL('../assets/xampp.png', import.meta.url).href },
+  { name: 'supabase', logo: new URL('../assets/supabase.js.png', import.meta.url).href },
+  { name: 'android', logo: new URL('../assets/android.png', import.meta.url).href },
 ]
 
 const events = [
