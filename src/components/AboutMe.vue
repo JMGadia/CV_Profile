@@ -35,7 +35,7 @@
 
             <div class="about-text fs-5 text-secondary">
               <p class="mb-4">
-                Hello! I'm <strong class="text-white">Jhun Mark D. Gadia</strong>, a passionate
+                Hello! I'm <strong class="highlight-name">Jhun Mark D. Gadia</strong>, a passionate
                 4th-year IT student and a software developer focused on building functional,
                 visually striking web applications. My journey began with a curiosity for the
                 mechanics behind every application, which evolved into a career of solving complex
@@ -93,6 +93,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* This ensures the name is black in light mode and white in dark mode */
+.highlight-name {
+  color: var(--bs-body-color);
+  font-weight: 800;
+}
+
 .about-section {
   background-color: var(--bs-body-bg);
   overflow: hidden;
